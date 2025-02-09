@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Send, Loader2 } from "lucide-react";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export default function TextToText() {
   const [prompt, setPrompt] = useState("");
@@ -8,15 +9,23 @@ export default function TextToText() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Initialize the Gemini API with your API key
+    const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
+
     if (!prompt.trim()) return;
 
-    setIsLoading(true);
-    // TODO: Implement Gemini API call here
-    await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulated delay
-    setResponse(
-      "This is a simulated response from Gemini API. The actual integration will be implemented when you add your API key."
-    );
-    setIsLoading(false);
+    try {
+      // Get the generative model
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+      // Generate the story
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const text = response.text();
+      setResponse(text);
+    } catch (error) {
+      console.error("Error generating content:", error);
+    }
   };
 
   return (
