@@ -38,14 +38,14 @@ export default function TextToText() {
             htmlFor="prompt"
             className="block text-sm font-medium text-gray-300"
           >
-            Your Prompt
+            Seu Prompt
           </label>
           <div className="mt-1">
             <textarea
               id="prompt"
               rows={4}
               className="w-full p-2 rounded-lg bg-gray-700 border-2 border-gray-700 text-gray-100 placeholder-gray-400 focus:border-purple-500 focus:ring-purple-500"
-              placeholder="Enter your prompt here..."
+              placeholder="Digite seu prompt aqui..."
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
             />
@@ -61,12 +61,12 @@ export default function TextToText() {
             {isLoading ? (
               <>
                 <Loader2 className="animate-spin -ml-1 mr-2 h-4 w-4" />
-                Processing...
+                Processando...
               </>
             ) : (
               <>
                 <Send className="-ml-1 mr-2 h-4 w-4" />
-                Generate
+                Gerar
               </>
             )}
           </button>
@@ -75,7 +75,7 @@ export default function TextToText() {
 
       {response && (
         <div className="mt-6">
-          <h2 className="text-lg font-medium text-gray-200 mb-2">Response</h2>
+          <h2 className="text-lg font-medium text-gray-200 mb-2">Resposta</h2>
           <div className="bg-gray-700 rounded-lg p-4">
             <p className="text-gray-200 whitespace-pre-wrap">{response}</p>
           </div>
