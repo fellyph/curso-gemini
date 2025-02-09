@@ -18,8 +18,18 @@ export default function TextToText() {
       // Requisitando o modelo do Gemini
       const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
       setIsLoading(true);
+      const PROMPT_OTIMIZADO = `
+      Responda em português brasileiro.
+      Responda de forma simples e objetiva.
+      Responda de forma direta e informal.
+      Responda de forma simples e objetiva.
+      Responda de forma direta e informal.
+
+      PERGUNTA:
+      ${prompt}
+      `;
       // Gerando o conteúdo
-      const result = await model.generateContent(prompt);
+      const result = await model.generateContent(PROMPT_OTIMIZADO);
       const response = await result.response;
       const text = response.text();
       setResponse(text);
