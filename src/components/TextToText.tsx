@@ -11,7 +11,7 @@ export default function TextToText() {
     e.preventDefault();
     // Inicializando a API do Gemini
     const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
-
+    setResponse('');
     if (!prompt.trim()) return;
 
     try {
@@ -36,27 +36,12 @@ export default function TextToText() {
       `;
 
       // Gerando o conteúdo
-      const result = await model.generateContent({
-        contents: [
-          {
-            role: 'user',
-            parts: [
-              {
-                text: PROMPT_OTIMIZADO,
-              },
-            ],
-          },
-        ],
-        // Configurações avançadas
-        generationConfig: {
-          // stopSequences: ["PHP", "Java"],
-          temperature: 2,
-        },
-      });
-      const response = await result.response;
-      const text = response.text();
-      setResponse(text);
+      const result = await model.generateContentStream(PROMPT_OTIMIZADO);
       setIsLoading(false);
+      for await (const chunk of result.stream) {
+        const chunkText = chunk.text();
+        setResponse((prev) => prev + chunkText);
+      }
     } catch (error) {
       // retornando o erro
       console.error('Error generating content:', error);
