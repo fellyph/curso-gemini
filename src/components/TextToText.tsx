@@ -16,7 +16,11 @@ export default function TextToText() {
 
     try {
       // Requisitando o modelo do Gemini
-      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+      const model = genAI.getGenerativeModel({
+        model: "gemini-2.0-flash",
+        systemInstruction:
+          "Você um líder técnico com 20 anos de mercado, especilazado em treinar novos programadores",
+      });
       setIsLoading(true);
       const PROMPT_OTIMIZADO = `
       REGRAS:
