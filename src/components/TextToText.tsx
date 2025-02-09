@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Send, Loader2 } from "lucide-react";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import React, { useState } from 'react';
+import { Send, Loader2 } from 'lucide-react';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export default function TextToText() {
-  const [prompt, setPrompt] = useState("");
-  const [response, setResponse] = useState("");
+  const [prompt, setPrompt] = useState('');
+  const [response, setResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -17,9 +17,9 @@ export default function TextToText() {
     try {
       // Requisitando o modelo do Gemini
       const model = genAI.getGenerativeModel({
-        model: "gemini-2.0-flash",
+        model: 'gemini-2.0-flash',
         systemInstruction:
-          "Você um líder técnico com 20 anos de mercado, especilazado em treinar novos programadores",
+          'Você um líder técnico com 20 anos de mercado, especilazado em treinar novos programadores',
       });
       setIsLoading(true);
       const PROMPT_OTIMIZADO = `
@@ -39,7 +39,7 @@ export default function TextToText() {
       const result = await model.generateContent({
         contents: [
           {
-            role: "user",
+            role: 'user',
             parts: [
               {
                 text: PROMPT_OTIMIZADO,
@@ -59,7 +59,7 @@ export default function TextToText() {
       setIsLoading(false);
     } catch (error) {
       // retornando o erro
-      console.error("Error generating content:", error);
+      console.error('Error generating content:', error);
     }
   };
 
@@ -67,10 +67,7 @@ export default function TextToText() {
     <div className="bg-gray-800 rounded-lg shadow-xl p-6">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label
-            htmlFor="prompt"
-            className="block text-sm font-medium text-gray-300 mb-3"
-          >
+          <label htmlFor="prompt" className="block text-sm font-medium text-gray-300 mb-3">
             Seu Prompt
           </label>
           <div className="mt-1">

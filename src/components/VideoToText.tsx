@@ -12,8 +12,10 @@ export default function VideoToText() {
 
     setIsLoading(true);
     // TODO: Implement Gemini API call here
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulated delay
-    setResponse("This is a simulated analysis from Gemini API. The actual integration will be implemented when you add your API key.");
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulated delay
+    setResponse(
+      'This is a simulated analysis from Gemini API. The actual integration will be implemented when you add your API key.'
+    );
     setIsLoading(false);
   };
 
@@ -21,9 +23,7 @@ export default function VideoToText() {
     <div className="bg-gray-800 rounded-lg shadow-xl p-6">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">
-            Upload Video File
-          </label>
+          <label className="block text-sm font-medium text-gray-300 mb-2">Upload Video File</label>
           <div className="flex items-center justify-center w-full">
             <label className="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-600 border-dashed rounded-lg cursor-pointer bg-gray-700 hover:bg-gray-600 transition-colors">
               <div className="flex flex-col items-center justify-center pt-5 pb-6">

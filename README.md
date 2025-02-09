@@ -11,6 +11,8 @@ O Google Gemini é uma API de IA que permite a criação de aplicações que uti
 - AULA 2: Como otimizar PROMPTS
 - AULA 3: Configurando opções avançadas
 - AULA 4: Utilizando instruções de Sistema
+- AULA 5: Respostas em streaming
+- AULA 6: Mantendo o historico da conversa
   
 
 ## Como instalar o projeto

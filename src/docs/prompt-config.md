@@ -16,10 +16,10 @@ Opcional. O conjunto de sequências de caracteres (até 5) que interromperão a 
 
 Opcional. Tipo MIME do texto candidato gerado. Os tipos MIME suportados são:
 
-*   `text/plain`: (padrão) Saída de texto.
-*   `application/json`: Resposta JSON nos candidatos de resposta.
-*    `text/x.enum`:ENUM como string de resposta.
-Consulte a documentação para obter uma lista de todos os tipos MIME de texto suportados.
+- `text/plain`: (padrão) Saída de texto.
+- `application/json`: Resposta JSON nos candidatos de resposta.
+- `text/x.enum`:ENUM como string de resposta.
+  Consulte a documentação para obter uma lista de todos os tipos MIME de texto suportados.
 
 ### `responseSchema`
 
@@ -29,7 +29,7 @@ Opcional. Esquema de saída do texto candidato gerado. Os esquemas devem ser um 
 
 Se definido, um `responseMimeType` compatível também deve ser definido. Tipos MIME compatíveis:
 
-*   `application/json`: Esquema para resposta JSON. Consulte o guia de geração de texto JSON para obter mais detalhes.
+- `application/json`: Esquema para resposta JSON. Consulte o guia de geração de texto JSON para obter mais detalhes.
 
 ### `responseModalities[]`
 
@@ -96,6 +96,7 @@ Nota: O valor padrão varia de acordo com o Modelo e é especificado pelo atribu
 Opcional. Semente usada na decodificação. Se não for definido, a solicitação usa uma semente gerada aleatoriamente.
 
 ### `presencePenalty`
+
 `number`
 
 Optional. Penalidade de presença aplicada aos logprobs do próximo token se o token já tiver sido visto na resposta.
@@ -107,6 +108,7 @@ Uma penalidade positiva desencorajará o uso de tokens que já foram usados na r
 Uma penalidade negativa incentivará o uso de tokens que já foram usados na resposta, diminuindo o vocabulário.
 
 ### `frequencyPenalty`
+
 `number`
 Optional. Penalidade de frequência aplicada aos logprobs do próximo token, multiplicada pelo número de vezes que cada token foi visto na resposta até o momento.
 
