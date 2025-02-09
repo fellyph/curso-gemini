@@ -9,21 +9,23 @@ export default function TextToText() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Initialize the Gemini API with your API key
+    // Inicializando a API do Gemini
     const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
 
     if (!prompt.trim()) return;
 
     try {
-      // Get the generative model
-      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-
-      // Generate the story
+      // Requisitando o modelo do Gemini
+      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+      setIsLoading(true);
+      // Gerando o conteúdo
       const result = await model.generateContent(prompt);
       const response = await result.response;
       const text = response.text();
       setResponse(text);
+      setIsLoading(false);
     } catch (error) {
+      // retornando o erro
       console.error("Error generating content:", error);
     }
   };
