@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Send, Loader2 } from 'lucide-react';
+import React, { useState } from "react";
+import { Send, Loader2 } from "lucide-react";
 
 export default function TextToText() {
-  const [prompt, setPrompt] = useState('');
-  const [response, setResponse] = useState('');
+  const [prompt, setPrompt] = useState("");
+  const [response, setResponse] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -12,8 +12,10 @@ export default function TextToText() {
 
     setIsLoading(true);
     // TODO: Implement Gemini API call here
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulated delay
-    setResponse("This is a simulated response from Gemini API. The actual integration will be implemented when you add your API key.");
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulated delay
+    setResponse(
+      "This is a simulated response from Gemini API. The actual integration will be implemented when you add your API key."
+    );
     setIsLoading(false);
   };
 
@@ -21,14 +23,17 @@ export default function TextToText() {
     <div className="bg-gray-800 rounded-lg shadow-xl p-6">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="prompt" className="block text-sm font-medium text-gray-300">
+          <label
+            htmlFor="prompt"
+            className="block text-sm font-medium text-gray-300"
+          >
             Your Prompt
           </label>
           <div className="mt-1">
             <textarea
               id="prompt"
               rows={4}
-              className="w-full rounded-lg bg-gray-700 border-gray-600 text-gray-100 placeholder-gray-400 focus:border-purple-500 focus:ring-purple-500"
+              className="w-full p-2 rounded-lg bg-gray-700 border-2 border-gray-700 text-gray-100 placeholder-gray-400 focus:border-purple-500 focus:ring-purple-500"
               placeholder="Enter your prompt here..."
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
