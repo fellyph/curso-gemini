@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Send, Loader2 } from "lucide-react";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export default function TextToText() {
   const [prompt, setPrompt] = useState("");
@@ -8,15 +9,54 @@ export default function TextToText() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Inicializando a API do Gemini
+    const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
+
     if (!prompt.trim()) return;
 
-    setIsLoading(true);
-    // TODO: Implement Gemini API call here
-    await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulated delay
-    setResponse(
-      "This is a simulated response from Gemini API. The actual integration will be implemented when you add your API key."
-    );
-    setIsLoading(false);
+    try {
+      // Requisitando o modelo do Gemini
+      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+      setIsLoading(true);
+      const PROMPT_OTIMIZADO = `
+      REGRAS:
+      Responda apenas perguntas relacionadas a tecnologia.
+      Responda em português brasileiro.
+      Responda de forma simples e objetiva.
+      Responda de forma direta e informal.
+      Responda de forma simples e objetiva.
+      Responda de forma direta e informal.
+
+      PERGUNTA:
+      ${prompt}
+      `;
+
+      // Gerando o conteúdo
+      const result = await model.generateContent({
+        contents: [
+          {
+            role: "user",
+            parts: [
+              {
+                text: PROMPT_OTIMIZADO,
+              },
+            ],
+          },
+        ],
+        // Configurações avançadas
+        generationConfig: {
+          // stopSequences: ["PHP", "Java"],
+          temperature: 2,
+        },
+      });
+      const response = await result.response;
+      const text = response.text();
+      setResponse(text);
+      setIsLoading(false);
+    } catch (error) {
+      // retornando o erro
+      console.error("Error generating content:", error);
+    }
   };
 
   return (
@@ -25,16 +65,16 @@ export default function TextToText() {
         <div>
           <label
             htmlFor="prompt"
-            className="block text-sm font-medium text-gray-300"
+            className="block text-sm font-medium text-gray-300 mb-3"
           >
-            Your Prompt
+            Seu Prompt
           </label>
           <div className="mt-1">
             <textarea
               id="prompt"
               rows={4}
               className="w-full p-2 rounded-lg bg-gray-700 border-2 border-gray-700 text-gray-100 placeholder-gray-400 focus:border-purple-500 focus:ring-purple-500"
-              placeholder="Enter your prompt here..."
+              placeholder="Digite seu prompt aqui..."
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
             />
@@ -50,12 +90,12 @@ export default function TextToText() {
             {isLoading ? (
               <>
                 <Loader2 className="animate-spin -ml-1 mr-2 h-4 w-4" />
-                Processing...
+                Processando...
               </>
             ) : (
               <>
                 <Send className="-ml-1 mr-2 h-4 w-4" />
-                Generate
+                Gerar
               </>
             )}
           </button>
@@ -64,7 +104,7 @@ export default function TextToText() {
 
       {response && (
         <div className="mt-6">
-          <h2 className="text-lg font-medium text-gray-200 mb-2">Response</h2>
+          <h2 className="text-lg font-medium text-gray-200 mb-2">Resposta</h2>
           <div className="bg-gray-700 rounded-lg p-4">
             <p className="text-gray-200 whitespace-pre-wrap">{response}</p>
           </div>

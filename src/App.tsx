@@ -1,8 +1,8 @@
-import React from 'react';
-import { BrainCog, MessageSquare, Mic, Video } from 'lucide-react';
-import TextToText from './components/TextToText';
-import AudioToText from './components/AudioToText';
-import VideoToText from './components/VideoToText';
+import React from "react";
+import { BrainCog, MessageSquare, Mic, Video } from "lucide-react";
+import TextToText from "./components/TextToText";
+import AudioToText from "./components/AudioToText";
+import VideoToText from "./components/VideoToText";
 
 type Demo = {
   id: string;
@@ -12,15 +12,31 @@ type Demo = {
 };
 
 function App() {
-  const [activeDemo, setActiveDemo] = React.useState<string>('text');
+  const [activeDemo, setActiveDemo] = React.useState<string>("text");
 
   const demos: Demo[] = [
-    { id: 'text', name: 'Text to Text', icon: <MessageSquare className="h-5 w-5" />, component: TextToText },
-    { id: 'audio', name: 'Audio to Text', icon: <Mic className="h-5 w-5" />, component: AudioToText },
-    { id: 'video', name: 'Video to Text', icon: <Video className="h-5 w-5" />, component: VideoToText },
+    {
+      id: "text",
+      name: "Text to Text",
+      icon: <MessageSquare className="h-5 w-5" />,
+      component: TextToText,
+    },
+    {
+      id: "audio",
+      name: "Audio to Text",
+      icon: <Mic className="h-5 w-5" />,
+      component: AudioToText,
+    },
+    {
+      id: "video",
+      name: "Video to Text",
+      icon: <Video className="h-5 w-5" />,
+      component: VideoToText,
+    },
   ];
 
-  const ActiveComponent = demos.find(demo => demo.id === activeDemo)?.component || TextToText;
+  const ActiveComponent =
+    demos.find((demo) => demo.id === activeDemo)?.component || TextToText;
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100">
@@ -29,7 +45,9 @@ function App() {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <BrainCog className="h-8 w-8 text-purple-500" />
-              <span className="ml-2 text-xl font-semibold">Gemini Explorer</span>
+              <span className="ml-2 text-xl font-semibold">
+                Gemini Explorer
+              </span>
             </div>
           </div>
         </div>
@@ -46,8 +64,8 @@ function App() {
                   onClick={() => setActiveDemo(demo.id)}
                   className={`w-full flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                     activeDemo === demo.id
-                      ? 'bg-purple-600 text-white'
-                      : 'text-gray-300 hover:bg-gray-800'
+                      ? "bg-purple-600 text-white"
+                      : "text-gray-300 hover:bg-gray-800"
                   }`}
                 >
                   {demo.icon}
@@ -60,10 +78,10 @@ function App() {
           <div className="flex-1">
             <div className="mb-8">
               <h1 className="text-3xl font-bold text-gray-100">
-                {demos.find(demo => demo.id === activeDemo)?.name}
+                {demos.find((demo) => demo.id === activeDemo)?.name}
               </h1>
               <p className="mt-2 text-gray-400">
-                Experience the power of Gemini's {activeDemo} capabilities.
+                Teste a API do Gemini com: {activeDemo}.
               </p>
             </div>
 
