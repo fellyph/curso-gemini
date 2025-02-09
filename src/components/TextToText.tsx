@@ -30,8 +30,25 @@ export default function TextToText() {
       PERGUNTA:
       ${prompt}
       `;
+
       // Gerando o conteúdo
-      const result = await model.generateContent(PROMPT_OTIMIZADO);
+      const result = await model.generateContent({
+        contents: [
+          {
+            role: "user",
+            parts: [
+              {
+                text: PROMPT_OTIMIZADO,
+              },
+            ],
+          },
+        ],
+        // Configurações avançadas
+        generationConfig: {
+          // stopSequences: ["PHP", "Java"],
+          temperature: 2,
+        },
+      });
       const response = await result.response;
       const text = response.text();
       setResponse(text);
