@@ -19,6 +19,8 @@ export default function TextToText() {
       const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
       setIsLoading(true);
       const PROMPT_OTIMIZADO = `
+      REGRAS:
+      Responda apenas perguntas relacionadas a tecnologia.
       Responda em português brasileiro.
       Responda de forma simples e objetiva.
       Responda de forma direta e informal.
@@ -46,7 +48,7 @@ export default function TextToText() {
         <div>
           <label
             htmlFor="prompt"
-            className="block text-sm font-medium text-gray-300"
+            className="block text-sm font-medium text-gray-300 mb-3"
           >
             Seu Prompt
           </label>
