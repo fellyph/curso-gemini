@@ -25,12 +25,12 @@ This course will teach you how to use the Google Gemini API to create web applic
 
 ### Chapter 2: Text to Text
 
-- LESSON 1: How to use the Google Gemini API
-- LESSON 2: How to optimize PROMPTS
-- LESSON 3: Configuring advanced options
-- LESSON 4: Using System instructions
-- LESSON 5: Streaming responses
-- LESSON 6: Keeping conversation history
+- LESSON 1: How to use the Google Gemini API (Branch: `chapter-1/lesson-1`)
+- LESSON 2: How to optimize PROMPTS (Branch: `chapter-1/lesson-2`)
+- LESSON 3: Configuring advanced options (Branch: `chapter-1/lesson-3`)
+- LESSON 4: Using System instructions (Branch: `chapter-1/lesson-4`)
+- LESSON 5: Streaming responses (Branch: `chapter-2/lesson-5`)
+- LESSON 6: Keeping conversation history (Branch: `chapter-2/lesson-6`)
 
 ### Chapter 2: Image to Text
 
